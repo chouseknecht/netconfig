@@ -1,0 +1,5 @@
+{% for item in params %}
+interface {{ item.name }}
+    description {{ item.description }}
+    no shutdown
+{% endfor %}

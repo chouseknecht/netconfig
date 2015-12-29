@@ -1,0 +1,24 @@
+---
+- hosts: veos01
+  gather_facts: no
+  connection: local
+
+  vars:
+    params:
+      - { name: Ethernet1, description: disabled by template }
+      - { name: Ethernet2, description: disabled by template }
+      - { name: Ethernet3, description: disabled by template }
+      - { name: Ethernet4, description: disabled by template }
+      - { name: Ethernet5, description: disabled by template }
+      - { name: Ethernet6, description: disabled by template }
+      - { name: Ethernet7, description: disabled by template }
+
+  tasks:
+    - net_config:
+        src: config.j2
+        authorize: yes
+      register: output
+
+
+    - debug: var=output
+

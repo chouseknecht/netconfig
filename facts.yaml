@@ -1,0 +1,6 @@
+---
+- hosts: virl
+
+  tasks:
+    - debug: msg='test'
+

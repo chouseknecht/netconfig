@@ -1,0 +1,40 @@
+[all:vars]
+ansible_python_interpreter=python
+
+[bastion]
+virl ansible_host=virl
+
+[bastion:vars]
+ansible_user=virl
+
+[ios]
+ios01
+ios02
+
+[nxos]
+nxos01
+nxos02
+nxos03
+nxos04
+
+[nxos:vars]
+nxapi_username=nxapi
+nxapi_password=nxapi
+
+[eos]
+veos01 ansible_host=10.7.0.249
+veos02 ansible_host=10.7.0.248
+
+[eos:vars]
+eapi_username=eapi
+eapi_password=eapi
+
+[ops]
+ops01 ansible_ssh_host=openswitch ansible_ssh_port=2222 
+
+[network:children]
+eos
+nxos
+ios
+ops
+
