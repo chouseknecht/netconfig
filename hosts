@@ -22,14 +22,19 @@ nxos04
 
 [nxos:vars]
 ansible_net_user=admin
-#ansible_net_pass=admin
+ansible_net_pass=admin
 
 [eos]
 veos01 ansible_host=10.7.0.249
 veos02 ansible_host=10.7.0.248
 
 [ops]
-ops01 ansible_ssh_host=openswitch ansible_ssh_port=2222 
+ops01 ansible_net_host=openswitch ansible_net_port=2222 
+
+[ops:vars]
+ansible_net_user=admin
+ansible_net_pass=admin
+ansible_net_provider=ops
 
 [network:children]
 eos

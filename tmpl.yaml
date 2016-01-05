@@ -21,6 +21,28 @@
 
     - debug: var=output
 
+- hosts: ops01
+  gather_facts: no
+
+  vars:
+    params:
+      - { name: 1, description: disabled by template }
+      - { name: 2, description: disabled by template }
+      - { name: 3, description: disabled by template }
+      - { name: 4, description: disabled by template }
+      - { name: 5, description: disabled by template }
+      - { name: 6, description: disabled by template }
+      - { name: 7, description: disabled by template }
+
+  tasks:
+    - name: configure ops devices
+      net_config:
+        src: config.j2
+      register: output
+      connection: local
+
+    - debug: var=output
+
 - hosts: nxos01
   gather_facts: no
 

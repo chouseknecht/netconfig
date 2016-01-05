@@ -1,0 +1,22 @@
+---
+- hosts: switch
+
+  vars:
+    config:
+      System:
+        hostname: "{{ inventory_hostname }}"
+
+  tasks:
+    - name: merge openswitch configuration from vars
+      ops_config:
+        src: "{{ config }}"
+      register: output
+
+    - debug: var=output
+
+    - name: merge openswitch configuration from json file
+      ops_config:
+        src: "{{ lookup('file', 'hostname.json') }}"
+      register: output
+
+    - debug: var=output
