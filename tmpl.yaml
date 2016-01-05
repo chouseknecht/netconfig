@@ -1,7 +1,5 @@
 ---
 - hosts: veos01
-  gather_facts: no
-  connection: local
 
   vars:
     params:
@@ -14,11 +12,56 @@
       - { name: Ethernet7, description: disabled by template }
 
   tasks:
-    - net_config:
+    - name: configure eos devices
+      net_config:
         src: config.j2
         authorize: yes
       register: output
+      connection: local
 
+    - debug: var=output
+
+- hosts: nxos01
+  gather_facts: no
+
+  vars:
+    params:
+      - { name: Ethernet2/1, description: disabled by template }
+      - { name: Ethernet2/2, description: disabled by template }
+      - { name: Ethernet2/3, description: disabled by template }
+      - { name: Ethernet2/4, description: disabled by template }
+      - { name: Ethernet2/5, description: disabled by template }
+
+  tasks:
+    - name: configure nxos devices
+      net_config:
+        src: config.j2
+        provider: nxos
+      register: output
+      delegate_to: virl
+      connection: local
+
+    - debug: var=output
+
+- hosts: ios01
+  gather_facts: no
+
+  vars:
+    params:
+      - { name: GigabitEthernet2/1, description: disabled by template }
+      - { name: GigabitEthernet2/2, description: disabled by template }
+      - { name: GigabitEthernet2/3, description: disabled by template }
+      - { name: GigabitEthernet2/4, description: disabled by template }
+      - { name: GigabitEthernet2/5, description: disabled by template }
+
+  tasks:
+    - name: configure ios devices
+      net_config:
+        src: config.j2
+        provider: ios
+      register: output
+      delegate_to: virl
+      connection: local
 
     - debug: var=output
 
