@@ -1,0 +1,18 @@
+---
+# tasks file for port-shutdown
+
+- name: configure eos devices
+  eos_config:
+      src: config.j2
+      authorize: "{{ port_shutdown_authorize }}"
+      username: "{{ port_shutdown_username }}"
+      password: "{{ port_shutdown_password }}"
+      use_ssl:  "{{ port_shutdown_use_ssl }}"
+      log_level: "{{ port_shutdown_log_level }}"
+      log_reset: "{{ port_shutdown_log_reset }}"
+      log_path: "{{ port_shutdown_log_path }}"
+  register: output
+  connection: local
+
+- debug: var=output
+  when: port_shutdown_log_level != 'off' 

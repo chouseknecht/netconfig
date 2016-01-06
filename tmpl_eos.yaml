@@ -1,0 +1,29 @@
+---
+- hosts: veos01
+  gather_facts: no
+
+  vars:
+    params:
+      - { name: Ethernet1, description: disabled by chris }
+      - { name: Ethernet2, description: disabled by chris }
+      - { name: Ethernet3, description: disabled by chris }
+      - { name: Ethernet4, description: disabled by chris }
+      - { name: Ethernet5, description: disabled by chris }
+      - { name: Ethernet6, description: disabled by chris }
+      - { name: Ethernet7, description: disabled by chris }
+
+  tasks:
+
+    - name: configure eos devices
+      eos_config:
+          src: config.j2
+          authorize: yes
+          username: admin
+          password: admin
+          use_ssl: false
+          log_level: info 
+          log_reset: yes 
+      register: output
+      connection: local
+
+    - debug: var=output

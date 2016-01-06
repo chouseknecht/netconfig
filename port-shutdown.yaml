@@ -1,0 +1,19 @@
+---
+- name: demonstrate port shutdown role
+  hosts: veos01
+  gather_facts: no
+  vars:
+      port_shutdown_ports:
+          - { name: Ethernet1, description: disabled by role }
+          - { name: Ethernet2, description: disabled by role }
+          - { name: Ethernet3, description: disabled by role }
+          - { name: Ethernet4, description: disabled by role }
+          - { name: Ethernet5, description: disabled by role }
+          - { name: Ethernet6, description: disabled by role }
+          - { name: Ethernet7, description: disabled by role }
+  roles:
+      - { role: port-shutdown,
+          port_shutdown_username: admin,
+          port_shutdown_password: admin,
+          port_shutdown_use_ssl: no,
+        }

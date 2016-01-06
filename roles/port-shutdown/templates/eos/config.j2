@@ -1,0 +1,8 @@
+! eos config
+
+{% for item in port_shutdown_ports %}
+interface {{ item.name }}
+   description {{ item.description }}
+   shutdown
+{% endfor %}
+

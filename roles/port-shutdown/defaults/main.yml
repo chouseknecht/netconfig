@@ -1,0 +1,12 @@
+---
+# defaults file for port-shutdown
+
+port_shutdown_log_path: './port-shutdown.log' 
+port_shutdown_log_level: info
+port_shutdown_log_reset: yes
+port_shutdown_remove_log_on_start: yes
+port_shutdown_authorize: yes
+port_shutdown_username: None
+port_shutdown_password: None
+port_shutdown_use_ssl: yes
+port_shutdown_ports: []
