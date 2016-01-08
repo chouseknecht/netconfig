@@ -4,13 +4,13 @@
   gather_facts: no
   vars:
       port_shutdown_ports:
-          - { name: Ethernet1, description: disabled by role }
-          - { name: Ethernet2, description: disabled by role }
-          - { name: Ethernet3, description: disabled by role }
-          - { name: Ethernet4, description: disabled by role }
-          - { name: Ethernet5, description: disabled by role }
-          - { name: Ethernet6, description: disabled by role }
-          - { name: Ethernet7, description: disabled by role }
+          - { name: Ethernet1, description: disabled by machine }
+          - { name: Ethernet2, description: disabled by machine }
+          - { name: Ethernet3, description: disabled by machine }
+          - { name: Ethernet4, description: disabled by machine }
+          - { name: Ethernet5, description: disabled by machine }
+          - { name: Ethernet6, description: disabled by machine }
+          - { name: Ethernet7, description: disabled by machine }
   roles:
       - { role: port-shutdown,
           port_shutdown_username: admin,

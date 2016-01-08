@@ -1,0 +1,31 @@
+
+- hosts: nxos01
+  gather_facts: no
+
+  vars:
+    params:
+      - { name: Ethernet2/1, description: disabled by chris }
+      - { name: Ethernet2/2, description: disabled by chris }
+      - { name: Ethernet2/3, description: disabled by chris }
+      - { name: Ethernet2/4, description: disabled by chris }
+      - { name: Ethernet2/5, description: disabled by chris }
+
+  tasks:
+    - name: configure nxos devices
+      nxos_config:
+        src: config.j2
+        use_ssl: false
+        username: admin
+        password: admin
+        log_level: debug
+        log_reset: yes
+        transport: nxapi
+      register: output
+      delegate_to: virl
+      connection: local
+      tags:
+        - nxos
+
+    - debug: var=output
+      tags:
+        - nxos

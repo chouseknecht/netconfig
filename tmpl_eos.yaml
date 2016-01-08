@@ -21,7 +21,7 @@
           username: admin
           password: admin
           use_ssl: false
-          log_level: info 
+          log_level: debug 
           log_reset: yes 
       register: output
       connection: local
